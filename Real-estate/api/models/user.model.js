@@ -17,6 +17,11 @@ email : {
     required : true,
     
 },
+whatsappNo :{
+    type : Number,
+    require : true,
+    unique : true
+}
 
 },
 {timestamps:true});
