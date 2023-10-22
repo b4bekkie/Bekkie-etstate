@@ -13,7 +13,7 @@ export const signup =   async (req,res,next)=>{
     res.status(404).json('user created successfully at db')
     
    } catch (error) {
-    next(errorHandler(550,'function error'))
+    next(error)
     
    }
    
