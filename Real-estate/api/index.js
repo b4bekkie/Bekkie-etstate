@@ -1,5 +1,5 @@
 import express from 'express'
-import cors from 'cors'
+
 const app = express();
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
