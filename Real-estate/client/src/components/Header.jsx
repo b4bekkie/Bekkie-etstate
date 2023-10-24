@@ -8,9 +8,9 @@ export default function Header() {
 
     
        <Link to="/">
-      <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-        <span className='text-slate-500'>Real <br></br></span>
-          <span className='text-slate-700'> E-State</span>
+      <h1 className='font-bold text-sm sm:text-xl flex flex-wrap hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'>
+        <span className='text-slate-500'>Sheringal<br></br></span>
+          <span className='text-slate-700'> EState</span>
           
       </h1>
       </Link>
