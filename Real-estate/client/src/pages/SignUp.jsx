@@ -1,21 +1,42 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
+
+  const isPasswordValid = (password) => {
+    return password.length >= 6;
+  };
+
+  const isPakistaniWhatsApp = (whatsappNo) => {
+    return /^(\+92)[0-9]{10}$/.test(whatsappNo);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { password, whatsappNo } = formData;
+
+    if (!isPasswordValid(password)) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+
+    if (!isPakistaniWhatsApp(whatsappNo)) {
+      setError('WhatsApp number must start with +92 and be 11 digits long');
+      return;
+    }
+
     try {
       setLoading(true);
       const res = await fetch('/api/auth/signup', {
@@ -40,6 +61,7 @@ export default function SignUp() {
       setError(error.message);
     }
   };
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
@@ -60,14 +82,17 @@ export default function SignUp() {
         />
         <input
           type='text'
-          placeholder='Enter your WhatsApp No'
+          placeholder='Enter your WhatsApp No (+92xxxxxxxxxxxx)'
           className='border p-3 rounded-lg hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105 '
           id='whatsappNo'
           onChange={handleChange}
+          defaultValue='+92'
+            
+          
         />
         <input
           type='password'
-          placeholder='password'
+          placeholder='password '
           className='border p-3 rounded-lg hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105 '
           id='password'
           onChange={handleChange}
