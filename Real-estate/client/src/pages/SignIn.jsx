@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { signInFailure,signInStart,signInSucess } from '../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -15,7 +18,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      dispatch(signInStart())
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: {
@@ -26,16 +29,13 @@ export default function SignIn() {
       const data = await res.json();
       console.log(data);
       if (data.success === false) {
-        setLoading(false);
-        setError(data.message);
+        dispatch(signInFailure(data.message));
         return;
       }
-      setLoading(false);
-      setError(null);
+      dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
-      setLoading(false);
-      setError(error.message);
+      dispatch(signInFailure(error.message));
     }
   };
   return (
@@ -69,7 +69,7 @@ export default function SignIn() {
       <div className='flex gap-2 mt-5'>
         <p>Dont an account?</p>
         <Link to={'/sign-up'}>
-          <span className='text-blue-700 transform transition-transform duration-200 hover:scale-105 '>Sign in</span>
+          <span className='text-blue-700 transform transition-transform duration-200 hover:scale-105 '>Sign Up</span>
         </Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
