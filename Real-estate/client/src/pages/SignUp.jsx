@@ -15,7 +15,6 @@ export default function SignUp() {
   };
 
   const isPasswordValid = (password) => {
-    
     return password.length >= 6;
   };
 
@@ -89,6 +88,7 @@ export default function SignUp() {
           onChange={handleChange}
           defaultValue='+92'
             
+          
         />
         <input
           type='password'
