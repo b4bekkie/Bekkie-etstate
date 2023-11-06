@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInFailure,signInStart,signInSuccess } from '../redux/user/userSlice';
+import { signInFailure,signInStart,signInSuccess } from '../redux/user/userSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
-  
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -58,7 +58,6 @@ export default function SignIn() {
           id='password'
           onChange={handleChange}
         />
-
         <button
           disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105 '
