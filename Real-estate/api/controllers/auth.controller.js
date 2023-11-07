@@ -1,7 +1,10 @@
 import User from "../models/user.model.js";
 import bcryptjs from 'bcryptjs'
 import { errorHandler } from "../utils/error.js";
+import dotenv from 'dotenv'
 import Jwt from "jsonwebtoken";
+
+
 
 export const signup =   async (req,res,next)=>{
 
@@ -50,7 +53,7 @@ export const google = async (req, res, next) => {
 
    if (user) {
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = Jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
      const { password: pass, ...rest } = user._doc;
 
@@ -75,7 +78,7 @@ export const google = async (req, res, next) => {
 
       await newUser.save();
 
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const token = Jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
 
       const { password: pass, ...rest } = newUser._doc;
 
