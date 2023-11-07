@@ -105,8 +105,9 @@ export default function SignUp() {
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
+        <OAuth></OAuth>
       </form>
-      <OAuth></OAuth>
+      
       <div className='flex gap-2 mt-5'>
         <p>Have an account?</p>
         <Link to={'/sign-in'}>
