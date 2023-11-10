@@ -164,7 +164,7 @@ export default function Profile() {
           className='border p-3 rounded-lg hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'
           onChange={handleChange}
         />
-        <input  onChange={handleChange} defaultValue = { '+92' + currentUser.whatsappNo  } placeholder='WhatsappNo' type="text"  id="whatsappNo" className='rounded-lg p-3 border hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'   />
+        <input  onChange={handleChange} defaultValue = { currentUser.whatsappNo ? '+92' + currentUser.whatsappNo : ' please enter your WhatsappNo'    } placeholder='WhatsappNo' type="text"  id="whatsappNo" className='rounded-lg p-3 border hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'   />
         <input
           type='password'
           placeholder='password'
