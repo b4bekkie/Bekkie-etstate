@@ -63,11 +63,18 @@ export default function Profile() {
     );
   };
   const handleChange = (e) => {
+    
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const whatsappRegex = /^92\d{10}$/;
+    if (formData.whatsappNo && !whatsappRegex.test(formData.whatsappNo)) {
+      await setWhatsappError('Please enter a valid WhatsApp number (e.g., 923xxxxxxxxx).');
+      return; // Prevent form submission if WhatsApp number is invalid
+    }
     try {
+      
       dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: 'POST',
@@ -83,6 +90,7 @@ export default function Profile() {
       }
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
+      setWhatsappError('');
     } catch (error) {
       dispatch(updateUserFailure(error.message));
     }
@@ -118,6 +126,7 @@ export default function Profile() {
       dispatch(deleteUserFailure(data.message));
     }
   };
+  const [whatsappError, setWhatsappError] = useState('');
 
   const handleShowListings = async () => {
     try {
@@ -187,15 +196,28 @@ export default function Profile() {
           placeholder='username'
           defaultValue={currentUser.username}
           id='username'
-          className='border p-3 rounded-lg'
+          className='border p-3 rounded-lg hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'
+          
           onChange={handleChange}
         />
         <input
           type='email'
           placeholder='email'
           id='email'
-          defaultValue={currentUser.email}
-          className='border p-3 rounded-lg'
+          defaultValue={currentUser.email   }
+          className='border p-3 rounded-lg  hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'
+          
+          onChange={handleChange}
+        />
+         <input
+          type='text'
+          placeholder='WhatsAppNo'
+          id='whatsappNo'
+          defaultValue={
+            currentUser.whatsappNo
+          }
+          className='border p-3 rounded-lg hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'
+           
           onChange={handleChange}
         />
         <input
@@ -203,7 +225,8 @@ export default function Profile() {
           placeholder='password'
           onChange={handleChange}
           id='password'
-          className='border p-3 rounded-lg'
+          className='border p-3 rounded-lg hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'
+          
         />
         <button
           disabled={loading}
@@ -211,12 +234,25 @@ export default function Profile() {
         >
           {loading ? 'Loading...' : 'Update'}
         </button>
-        <Link
-          className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
-          to={'/create-listing'}
-        >
-          Create Listing
-        </Link>
+      
+      {/* ... (other JSX code) */}
+      <Link
+        className={`bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95 ${
+          currentUser.whatsappNo ? '' : 'cursor-not-allowed bg-green-300 '
+        }`}
+        to={currentUser.whatsappNo ? '/create-listing' : null}
+        onClick={(e) => {
+          if (!currentUser.whatsappNo) {
+            e.preventDefault();
+            setWhatsappError('Please provide a WhatsApp number to create a listing.');
+          }
+        }}
+      >
+        Create Listing
+      </Link>
+      {whatsappError && <p className='text-red-700 mt-2  '>{whatsappError}</p>}
+      {/* ... (other JSX code) */}
+   
       </form>
       <div className='flex justify-between mt-5'>
         <span

@@ -1,4 +1,8 @@
 import { useState } from 'react';
+
+
+
+
 import {
   getDownloadURL,
   getStorage,
@@ -17,7 +21,9 @@ export default function CreateListing() {
     imageUrls: [],
     name: '',
     description: '',
-    address: '',
+    address: 'District HeadQuarter Hospital',
+    city: 'Batkhela',
+    country: "Pakistan",
     type: 'rent',
     bedrooms: 1,
     bathrooms: 1,
@@ -28,6 +34,7 @@ export default function CreateListing() {
     furnished: false,
   });
   const [imageUploadError, setImageUploadError] = useState(false);
+  
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -177,15 +184,36 @@ export default function CreateListing() {
             onChange={handleChange}
             value={formData.description}
           />
-          <input
-            type='text'
-            placeholder='Address'
-            className='border p-3 rounded-lg'
-            id='address'
-            required
-            onChange={handleChange}
-            value={formData.address}
-          />
+         <div className='flex flex-wrap gap-4'>
+  <input
+    type='text'
+    placeholder='Address'
+    className='flex-1 border p-3 rounded-lg'
+    id='address'
+    required
+    onChange={handleChange}
+    value={formData.address}
+  />
+  <input
+    type='text'
+    placeholder='City'
+    className='flex-1 border p-3 rounded-lg'
+    id='city'
+    required
+    onChange={handleChange}
+    value={formData.city}
+  />
+  <input
+  type='text'
+  placeholder='Country'
+  className='flex-1 border p-3 rounded-lg'
+  id='country'  // Change this to 'country'
+  required
+  onChange={handleChange}
+  value={formData.country}  // Change this to 'country'
+/>
+ 
+</div>
           <div className='flex gap-6 flex-wrap'>
             <div className='flex gap-2'>
               <input

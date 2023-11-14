@@ -34,7 +34,7 @@ export default function SignUp() {
     }
 
     if (!isPakistaniWhatsApp(whatsappNo)) {
-      setError('WhatsApp number must start with +92 and be 11 digits long');
+      setError('Invalid WhatsApp: must start with 92 and be 10 digits long (e.g., 923*********)');
       return;
     }
 
