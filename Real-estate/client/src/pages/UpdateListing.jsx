@@ -1,8 +1,4 @@
-import { useState } from 'react';
-
-
-
-
+import { useEffect, useState } from 'react';
 import {
   getDownloadURL,
   getStorage,
@@ -11,11 +7,12 @@ import {
 } from 'firebase/storage';
 import { app } from '../firbase';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const params = useParams();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
@@ -34,16 +31,31 @@ export default function CreateListing() {
     furnished: false,
   });
   const [imageUploadError, setImageUploadError] = useState(false);
-  
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(formData);
+
+  useEffect(() => {
+    const fetchListing = async () => {
+      const listingId = params.listingId;
+      const res = await fetch(`/api/listing/get/${listingId}`);
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+      setFormData(data);
+    };
+
+    fetchListing();
+  }, []);
+
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
       setUploading(true);
       setImageUploadError(false);
       const promises = [];
+
       for (let i = 0; i < files.length; i++) {
         promises.push(storeImage(files[i]));
       }
@@ -65,6 +77,7 @@ export default function CreateListing() {
       setUploading(false);
     }
   };
+
   const storeImage = async (file) => {
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);
@@ -89,6 +102,7 @@ export default function CreateListing() {
       );
     });
   };
+
   const handleRemoveImage = (index) => {
     setFormData({
       ...formData,
@@ -136,7 +150,7 @@ export default function CreateListing() {
         return setError('Discount price must be lower than regular price');
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/listing/create', {
+      const res = await fetch(`/api/listing/update/${params.listingId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -160,7 +174,7 @@ export default function CreateListing() {
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>
-        Create a Listing
+        Update a Listing
       </h1>
       <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
         <div className='flex flex-col gap-4 flex-1'>
@@ -184,7 +198,7 @@ export default function CreateListing() {
             onChange={handleChange}
             value={formData.description}
           />
-         <div className='flex flex-wrap gap-4'>
+             <div className='flex flex-wrap gap-4'>
   <input
     type='text'
     placeholder='Address'
@@ -306,7 +320,7 @@ export default function CreateListing() {
               />
               <div className='flex flex-col items-center'>
                 <p>Regular price</p>
-                <span className='text-xs'>(RS/ month)</span>
+                <span className='text-xs'>(RS / month)</span>
               </div>
             </div>
             {formData.offer && (
@@ -381,7 +395,7 @@ export default function CreateListing() {
             disabled={loading || uploading}
             className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
           >
-            {loading ? 'Creating...' : 'Create listing'}
+            {loading ? 'Creating...' : 'Update listing'}
           </button>
           {error && <p className='text-red-700 text-sm'>{error}</p>}
         </div>
