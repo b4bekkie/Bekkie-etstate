@@ -11,7 +11,7 @@ export default function Contact({ listing }) {
   useEffect(() => {
     const fetchLandlord = async () => {
       try {
-        const res = await fetch(`/api/user/${listing.userRef}`);
+        const res = await fetch(`/api/user/${listing.userRef}`); 
         const data = await res.json();
         setLandlord(data);
       } catch (error) {
@@ -39,7 +39,7 @@ export default function Contact({ listing }) {
             className="w-full border p-3 rounded-lg"
           ></textarea>
 
-          {/* Create a WhatsApp message link with landlord's WhatsApp number and the message */}
+         {/* Create a WhatsApp message link with landlord's WhatsApp number and the message */}
           <a
             href={`https://api.whatsapp.com/send?phone=${landlord.whatsappNo}&text=${message}`}
             className="bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-95"

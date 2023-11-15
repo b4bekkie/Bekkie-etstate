@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "dotenv": "^16.3.1",
+    "esri-leaflet-geocoder": "^2.3.3",
     "firebase": "^10.5.2",
     "formik": "^2.4.5",
     "icons": "^1.0.0",
