@@ -22,11 +22,18 @@ app.use(express.json())
 app.use(cookieParser());
 
 
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+
+
 app.listen(3000,()=>{
     console.log('app is running on port 3000') 
 })
-
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
+ 
 app.use('/api/user',userRouter)
 app.use('/api/auth',authRouter)
 app.use('/api/listing', listingRouter);
