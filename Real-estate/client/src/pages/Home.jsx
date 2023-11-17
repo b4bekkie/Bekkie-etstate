@@ -5,6 +5,9 @@ import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faBuilding, faEnvelope, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
@@ -129,6 +132,47 @@ export default function Home() {
           </div>
         )}
       </div>
+      <footer className='bg-gray-800 text-white p-8'>
+      <div className='max-w-6xl mx-auto flex flex-col gap-8'>
+        <div className='flex flex-wrap gap-4'>
+          <div className='flex-1'>
+            <h2 className='text-2xl font-semibold mb-4'>
+              <FontAwesomeIcon icon={faHome} className='mr-2' />
+              Quick Links
+            </h2>
+            <ul>
+              <li><Link to='/'><FontAwesomeIcon icon={faChevronRight} className='mr-2' /> Home</Link></li>
+              <li><Link to='/about'><FontAwesomeIcon icon={faChevronRight} className='mr-2' /> About Us</Link></li>
+              <li><a href='mailto:iambekkie99@gmail.com'><FontAwesomeIcon icon={faChevronRight} className='mr-2' /> Contact Us</a></li>
+            </ul>
+          </div>
+          <div className='flex-1'>
+            <h2 className='text-2xl font-semibold mb-4'>
+              <FontAwesomeIcon icon={faBuilding} className='mr-2' />
+              Categories
+            </h2>
+            <ul>
+              <li><Link to='/search?type=sale'><FontAwesomeIcon icon={faChevronRight} className='mr-2' /> For Sale</Link></li>
+              <li><Link to='/search?type=rent'><FontAwesomeIcon icon={faChevronRight} className='mr-2' /> For Rent</Link></li>
+              <li><Link to='/search?offer=true'><FontAwesomeIcon icon={faChevronRight} className='mr-2' /> Special Offers</Link></li>
+            </ul>
+          </div>
+          <div className='flex-1'>
+            <h2 className='text-2xl font-semibold mb-4'>
+              <FontAwesomeIcon icon={faEnvelope} className='mr-2' />
+              Contact Us
+            </h2>
+            <p>23020 Sheringal Dir</p>
+            <p>Email: info@sheringalestate.com</p>
+            <p>Phone: +923211154143</p>
+          </div>
+        </div>
+        <div className='border-t border-gray-600 pt-6'>
+          <p>&copy; 2023 Sheringal Estate. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
     </div>
+    
   );
 }

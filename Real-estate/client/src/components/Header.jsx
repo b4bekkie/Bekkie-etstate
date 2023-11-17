@@ -26,7 +26,7 @@ export default function Header() {
     <header className='bg-slate-200 shadow-md'>
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
-          <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
+          <h1 className='font-bold text-sm sm:text-xl flex flex-wrap hover:opacity-95 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'>
             <span className='text-slate-500'>Sheringal</span>
             <span className='text-slate-700'>Estate</span>
           </h1>
@@ -38,7 +38,7 @@ export default function Header() {
           <input
             type='text'
             placeholder='Search...'
-            className='bg-transparent focus:outline-none w-24 sm:w-64'
+            className='bg-transparent  rounded-lg focus:outline-none w-24 sm:w-64 hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105 '
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -60,7 +60,7 @@ export default function Header() {
           <Link to='/profile'>
             {currentUser ? (
               <img
-                className='rounded-full h-7 w-7 object-cover'
+                className='rounded-full h-7 w-7 object-cover  hover:opacity-90 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105 '
                 src={currentUser.avatar}
                 alt='profile'
               />

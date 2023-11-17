@@ -176,7 +176,7 @@ export default function Profile() {
           onClick={() => fileRef.current.click()}
           src={formData.avatar || currentUser.avatar}
           alt='profile'
-          className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2'
+          className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2 hover:opacity-95 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'
         />
         <p className='text-sm self-center'>
           {fileUploadError ? (
