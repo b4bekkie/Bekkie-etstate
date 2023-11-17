@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "dotenv": "^16.3.1",
     "esri-leaflet-geocoder": "^2.3.4",
     "firebase": "^10.5.2",
