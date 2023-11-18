@@ -2,7 +2,7 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
-  "proxy" : "https://bekkie-etstate-server.vercel.app" ,
+ 
   "type": "module",
   "scripts": {
     "dev": "vite",
