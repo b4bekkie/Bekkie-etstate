@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://bekkie-etstate-o0rsfrngt-b4bekkies-projects.vercel.app',
         secure: false,
       },
     },
