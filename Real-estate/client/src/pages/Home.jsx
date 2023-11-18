@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/listing/get?offer=true&limit=4`);
+        const res = await fetch(`/api/listing/get?offer=true&limit=4`);
         const data = await res.json();
         setOfferListings(data);
         fetchRentListings();
@@ -29,7 +29,7 @@ export default function Home() {
     };
     const fetchRentListings = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/listing/get?type=rent&limit=4`);
+        const res = await fetch(`/api/listing/get?type=rent&limit=4`);
         const data = await res.json();
         setRentListings(data);
         fetchSaleListings();
@@ -40,7 +40,7 @@ export default function Home() {
 
     const fetchSaleListings = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/listing/get?type=sale&limit=4`);
+        const res = await fetch(`/api/listing/get?type=sale&limit=4`);
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div>
       {/* top */}
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
+      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto  text-center'>
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
           Find your next <span className='text-slate-500'>perfect</span>
           <br />
