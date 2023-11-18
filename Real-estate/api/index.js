@@ -18,11 +18,15 @@ mongoose.connect(process.env.MONGOSE)
 .catch((e)=>{
  console.log(e)
 })
+const corsOptions = {
+  origin: 'https://bekkie-etstate-wnqa.vercel.app',
+  // Add other CORS options as needed
+};
 
 app.use(express.json())
 app.use(cookieParser());
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 
 
