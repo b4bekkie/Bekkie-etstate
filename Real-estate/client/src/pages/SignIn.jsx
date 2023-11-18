@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signInFailure,signInStart,signInSuccess } from '../redux/user/userSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 import OAuth from '../components/OAuth.jsx';
+import { API_BASE_URL } from '../confiq.js';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -20,7 +21,7 @@ export default function SignIn() {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch('https://bekkie-etstate.vercel.app/api/auth/signin', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

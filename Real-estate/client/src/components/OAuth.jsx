@@ -4,6 +4,7 @@ import { app } from '../firbase.js'; // Ensure the correct path to your Firebase
 import { signInSuccess } from '../redux/user/userSlice.js';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../confiq.js';
 
 
 function OAuth() {
@@ -19,7 +20,7 @@ function OAuth() {
        console.log(result)
        
 
-       const res = await fetch('/api/auth/google', {
+       const res = await fetch(`${API_BASE_URL}/api/auth/google`, {
          method: 'POST',
          headers: {
            'Content-Type': 'application/json',
