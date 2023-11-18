@@ -1,6 +1,7 @@
 {
   "name": "client",
   "private": true,
+  "proxy" : "https://bekkie-etstate.vercel.app'",
   "version": "0.0.0",
  
   "type": "module",
