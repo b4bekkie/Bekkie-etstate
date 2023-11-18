@@ -19,10 +19,7 @@ mongoose.connect(process.env.MONGOSE)
  console.log(e)
 })
 
-  const corsOptions = {
-    origin: 'https://bekkie-etstate-wnqa.vercel.app', // Allow requests from this origin
-     // Some legacy browsers (IE11, various SmartTVs) choke on 204
-  };
+
   
   // Add other CORS options as needed
 
@@ -30,7 +27,7 @@ mongoose.connect(process.env.MONGOSE)
 app.use(express.json())
 app.use(cookieParser());
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 
