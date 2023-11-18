@@ -19,7 +19,8 @@ mongoose.connect(process.env.MONGOSE)
  console.log(e)
 })
 const corsOptions = {
-  origin: 'https://bekkie-etstate-wnqa.vercel.app',
+  origin: 'https://bekkie-etstate-wnqa.vercel.app'
+  
   // Add other CORS options as needed
 };
 
