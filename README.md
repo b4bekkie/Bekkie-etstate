@@ -48,22 +48,17 @@ Our real estate platform is built using the following technologies:
 
 To run the project locally, you will need to install Node.js dependencies for both the client (frontend) and the backend. Here's how you can do it:
 
-## Frontend (Client)
-1. Navigate to the frontend directory:
+1. Navigate to the frontend directory and Backend:
 
 ```bash
+Froentend (Client)
 cd client
 npm i
-###Backend (api)
+Backend (api)
 1. Navigate to the backend directory:
 ```bash
 cd api
-npm i
 
-
-### Contact Us
-
-If you have any questions, feedback, or inquiries, feel free to contact us at [iambekkie99@gmail.com](mailto:iambekkie99@gmail.com).
 
 
 
