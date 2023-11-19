@@ -10,9 +10,9 @@ Welcome to our modern real estate platform built using a stack of cutting-edge t
 
 - Users can easily connect with landlords or property owners through WhatsApp. A dedicated chat button allows users to initiate a conversation with the landlord, making the communication process convenient.
 
-### 2. Property Location via Google Maps
+### 2. Property Location via React-leaflet Map
 
-- Property listings include integrated Google Maps to display the exact location of each property. Users can explore the neighborhood, nearby amenities, and assess the property's surroundings.
+- Property listings include integrated React-leadlet openstreet Map to display the exact location of each property. Users can explore the neighborhood, nearby amenities, and assess the property's surroundings.
 
 ### 3. Advanced Search Functionalities
 
