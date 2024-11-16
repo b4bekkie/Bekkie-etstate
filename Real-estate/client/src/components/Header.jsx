@@ -27,7 +27,7 @@ export default function Header() {
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
           <h1 className='font-bold text-sm sm:text-xl flex flex-wrap hover:opacity-95 disabled:opacity-80 transform transition-transform duration-200 hover:scale-105'>
-            <span className='text-slate-500'>Sheringal</span>
+            <span className='text-slate-500'>PI</span>
             <span className='text-slate-700'>Estate</span>
           </h1>
         </Link>
